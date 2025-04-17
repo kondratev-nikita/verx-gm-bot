@@ -18,11 +18,11 @@ type Config struct {
 }
 
 func New() (Config, error) {
-	apiIdStr := os.Getenv("TG_ACC_API_ID")
-	if apiIdStr == "" {
+	apiIDStr := os.Getenv("TG_ACC_API_ID")
+	if apiIDStr == "" {
 		return Config{}, errors.New("TG_ACC_API_ID not set")
 	}
-	apiIdInt, err := strconv.Atoi(apiIdStr)
+	apiIDInt, err := strconv.Atoi(apiIDStr)
 	if err != nil {
 		return Config{}, fmt.Errorf("TG_ACC_API_ID is not a number: %w", err)
 	}
@@ -39,7 +39,7 @@ func New() (Config, error) {
 
 	return Config{
 		TGAcc: TGAcc{
-			ApiID:          apiIdInt,
+			ApiID:          apiIDInt,
 			ApiHash:        apiHash,
 			TargetUsername: targetUsername,
 		},

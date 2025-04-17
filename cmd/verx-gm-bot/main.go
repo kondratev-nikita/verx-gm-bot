@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"github.com/kondratev-nikita/verx-gm-bot/internal/services/msg_gen"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -12,7 +13,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/kondratev-nikita/verx-gm-bot/internal/bot"
 	"github.com/kondratev-nikita/verx-gm-bot/internal/config"
-	"github.com/kondratev-nikita/verx-gm-bot/internal/msg_gen"
 	"github.com/kondratev-nikita/verx-gm-bot/internal/utils"
 
 	"github.com/go-co-op/gocron/v2"

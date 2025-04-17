@@ -3,10 +3,10 @@ package bot
 import (
 	"fmt"
 	"github.com/go-co-op/gocron/v2"
+	"github.com/kondratev-nikita/verx-gm-bot/internal/services/msg_gen"
 	"log/slog"
 
 	"github.com/gotd/td/telegram"
-	"github.com/kondratev-nikita/verx-gm-bot/internal/msg_gen"
 )
 
 type Bot struct {

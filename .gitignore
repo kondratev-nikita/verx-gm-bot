@@ -1,0 +1,7 @@
+bin
+.idea
+.vscode
+.env
+.sessions
+.DS_Store
+verx-bot

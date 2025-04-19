@@ -10,38 +10,36 @@ import (
 
 func (b *Bot) taskSendGoodMorningMsg() gocron.Task {
 	return gocron.NewTask(
-		func(ctx context.Context) {
+		func() {
 			b.l.Info("start sending good morning message")
 
-			err := b.sendMessageToTargetUser(ctx, b.msgGenSvc.GenGoodMorning())
+			err := b.sendMessageToTargetUser(b.msgGenSvc.GenGoodMorning())
 			if err != nil {
 				b.l.Error("failed to send good morning message", slog.String("err", err.Error()))
 			} else {
 				b.l.Info("sent good morning message")
 			}
 		},
-		context.Background(),
 	)
 }
 
 func (b *Bot) taskSendGoodNightMsg() gocron.Task {
 	return gocron.NewTask(
-		func(ctx context.Context) {
+		func() {
 			b.l.Info("start sending good night message")
 
-			err := b.sendMessageToTargetUser(ctx, b.msgGenSvc.GenGoodNight())
+			err := b.sendMessageToTargetUser(b.msgGenSvc.GenGoodNight())
 			if err != nil {
 				b.l.Error("failed to send good night message", slog.String("err", err.Error()))
 			} else {
 				b.l.Info("sent good night message")
 			}
 		},
-		context.Background(),
 	)
 }
 
-func (b *Bot) sendMessageToTargetUser(ctx context.Context, msg string) error {
-	err := b.tc.Run(ctx, func(ctx context.Context) error {
+func (b *Bot) sendMessageToTargetUser(msg string) error {
+	err := b.tc.Run(context.Background(), func(ctx context.Context) error {
 		sender := message.NewSender(b.tc.API())
 
 		_, err := sender.Resolve(b.tgAccTargetUsername).Text(ctx, msg)
